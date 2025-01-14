@@ -45,7 +45,7 @@ def create_books(book: BookCreate):
 
 
 @app.put("/books/{id}")
-def update_books(id: int, book: BookUpdate):
+def update_books(id: int, book: BookUpdate) -> Book:
   with Session(db) as session:
     statement = select(Book).where(Book.id == id)
     bookExists = session.exec(statement).one_or_none()
@@ -53,9 +53,16 @@ def update_books(id: int, book: BookUpdate):
   if not bookExists:
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
 
-  if book.title: bookExists.title = book.title
-  if book.author: bookExists.author = book.author
-  if book.pages: bookExists.pages = book.pages
+  # if book.title: bookExists.title = book.title
+  # if book.author: bookExists.author = book.author
+
+  # Creating a dictionary of only the data that has been provided in req body
+  # exclude fields that have not been explicitly set
+  update_data = book.model_dump(exclude_unset=True)
+
+  for key, value in update_data.items():
+    setattr(bookExists, key, value)
+
 
   session.add(bookExists)
   session.commit()
