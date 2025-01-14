@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from sqlmodel import SQLModel, Field, Integer, String, Boolean
+from sqlmodel import SQLModel, Field, String
 
 class Book(SQLModel, table = True):
   id: int = Field(primary_key=True, nullable=False)
