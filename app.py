@@ -62,6 +62,17 @@ def update_books(id: int, book: BookUpdate):
   session.refresh(bookExists)
   return bookExists
 
+@app.delete("/books/{id}")
+def delete_books(id: int):
+  with Session(db) as session:
+    statement = select(Book).where(Book.id == id)
+    bookExists = session.exec(statement).one_or_none()
+
+  if not bookExists:
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Book not found")
+
+  session.delete(bookExists)
+  session.commit()
 
 
 
