@@ -12,9 +12,21 @@ def index():
 
 
 @app.get("/books")
-def get_books() -> list[Book]:
+def get_books(
+  limit: int = 10,
+  author: str = None,
+  publication_year: int = None,
+  genre: str = None,
+  language: str = None
+) -> list[Book]:
   with Session(db) as session:
     statement = select(Book)
+    
+    if author: statement = statement.filter(Book.author == author.title())
+    if publication_year: statement = statement.filter(Book.publication_year == publication_year)
+    if genre: statement = statement.filter(Book.genre == genre.title())
+    if language: statement = statement.filter(Book.language == language.title())
+
     books = session.exec(statement).fetchall()
     return books
 
