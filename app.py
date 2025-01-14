@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException, status
-
+from models import Book
 app = FastAPI()
 
 BOOKS = [
@@ -14,11 +14,11 @@ def index():
   return {"Hello" : "World"}
 
 @app.get("/books")
-def get_books():
+def get_books() -> list[Book]:
   return BOOKS
 
 @app.get("/books/{id}")
-def get_books(id: int):
+def get_books(id: int) -> list[Book]:
   bookExists = [book for book in BOOKS if book.get("id") == id]
 
   if not bookExists:
