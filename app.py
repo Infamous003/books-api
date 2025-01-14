@@ -1,6 +1,10 @@
 from fastapi import FastAPI, HTTPException, status
 from models import Book
+from database import create_db_and_tables, db
+
 app = FastAPI()
+create_db_and_tables()
+
 
 BOOKS = [
   {"id": 1, "title": "The Alchemist", "author": "Paulo Coehlo", "pages": 328},
