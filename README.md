@@ -17,15 +17,15 @@ Welcome to **BooksAPI**, it's a personal project I made. This project demonstrat
 
 Clone this repository and get inside the folder. You also need to have a virtual environment activated.
 
-- 1. Install the required dependencies from requirements.txt
+- Install the required dependencies from requirements.txt
   ```bash
   pip install -r requirements.txt
   ```
-- 2. Use uvicorn to start the server
+- Use uvicorn to start the server
   ```bash
   uvicorn app:app --reload
   ```
-- 3. Open the link uvicorn gives you
+- Open the link uvicorn gives you
   ```bash
   http://127.0.0.1:8000/docs
   ```
@@ -44,7 +44,7 @@ Clone this repository and get inside the folder. You also need to have a virtual
 | PUT    | `/books/{id}`    | Update an existing book  |
 | DELETE | `/books/{id}`    | Delete a book            |
 
-## Project Structure
+### Project Structure
 
 ```
 books-api/
