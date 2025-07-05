@@ -15,22 +15,18 @@ Welcome to **BooksAPI**, it's a personal project I made. This project demonstrat
 
 ## To Get started
 
-Clone this repository and get inside the folder. You also need to have a virtual environment activated.
+You need to have Docker installed.
+Once insatalled, go to the project directory and create a docker image like so:
+```bash
+docker build -t books-api .
+```
+And then, run this image:
 
-- Install the required dependencies from requirements.txt
-  ```bash
-  pip install -r requirements.txt
-  ```
-- Use uvicorn to start the server
-  ```bash
-  uvicorn app:app --reload
-  ```
-- Open the link uvicorn gives you
-  ```bash
-  http://127.0.0.1:8000/docs
-  ```
-  You can use FastAPI's Swagger UI or whatever you like
+```bash
+docker run -p 8000:8000 books-api
+```
 
+Then open the link http://127.0.0.1:8000/docs in your browser
 
 ### API Endpoints
 
